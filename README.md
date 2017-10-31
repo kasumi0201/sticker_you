@@ -12,7 +12,7 @@
 # Wireframes
 
 # ERD (entity relationship diagram)
-![ERD](/images/erd.png)
+![ERD](images/erd.png)
 # Design (figma, fonts, colours)
 
 # Models
