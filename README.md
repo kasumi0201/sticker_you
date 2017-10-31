@@ -21,21 +21,37 @@ I created the app called "sticker you" which can link designers and users.
 # Problem with this project and what did I learn
 
 When I got this error: "SQLite3::SQLException: no such table: xxxx: DROP TABLE"(in terminal)
-Solution: $rake db:drop
-          $rake db:migrate
+Solution:
+```
+$rake db:drop
+$rake db:migrate
+```
 
-How to drop table: add "drop_table" in "def change -- end" in migration file.
-then run $ rails db:migrate
+How to drop table: add this in migration file.
+```
+def change
+  drop_table :tablenamehere
+end
+```
+then run
+```
+ $ rails db:migrate
+ ```
 
 "type" could not use as a colum. To rename the colum, run
+```
 $ rails generate migration rename_type_column_to_products
+```
+added this in migration file which created with this
 ```
 def change
   rename_column :products, :type, :kind
 end
 ```
-Then run
+Then ran
+```
 $ rake db:migrate
+```
 
 
 
