@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  shipping_postcode: 1
+  shipping_address: MyText
+  phone: 1
+
+two:
+  user: two
+  shipping_postcode: 1
+  shipping_address: MyText
+  phone: 1
