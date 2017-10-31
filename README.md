@@ -28,7 +28,7 @@ $rake db:migrate
 ```
 
 How to drop table: add this in migration file.
-```
+```Ruby
 def change
   drop_table :tablenamehere
 end
@@ -43,7 +43,7 @@ then run
 $ rails generate migration rename_type_column_to_products
 ```
 added this in migration file which created with this
-```
+```Ruby
 def change
   rename_column :products, :type, :kind
 end
