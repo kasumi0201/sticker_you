@@ -12,8 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :order_user_id %>
+    <%#= form.label :user_id %>
+    <%#= form.text_field :user_id, id: :order_user_id %>
+    <%= current_user  %>
   </div>
 
   <div class="field">
