@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :new ]
 
   # GET /products
   # GET /products.json
@@ -9,7 +9,11 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
+  
   def show
+    @product = Product.includes(:user).find(params[:id])
+    @ratings = @product.ratings.includes(:user).all
+    @rating  = @product.ratings.build(user_id: current_user.id) if current_user
   end
 
   # GET /products/new
@@ -18,43 +22,41 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-  end
 
   # POST /products
   # POST /products.json
+
   def create
     @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.save
+        flash[:success] = 'Product added!'
+        redirect_to products_path
+    else
+        render 'new'
     end
-  end
+end
 
+  def edit
+      @photo = Photo.find(params[:id])
+  end
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
+
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
+      @photo = Photo.find(params[:id])
+      if @photo.update_attributes(photo_params)
+        flash[:success] = 'Photo edited!'
+        redirect_to photos_path
       else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        render 'edit'
       end
-    end
   end
 
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
     @product.destroy
+
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
@@ -64,11 +66,11 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:user_id, :title, :kind, :size, :price, :description, :image_data)
+      params.require(:product).permit(:image,:user_id, :title, :kind, :size, :price, :description, :image_data)
     end
 end

@@ -32,8 +32,32 @@
 
 <p>
   <strong>Image data:</strong>
-  <%= @product.image_data %>
+  <td><img src= "<%= @product.image_url %>"></td>
 </p>
+
+
+
+
+<div>
+  <% @ratings.each do |rating| %>
+    <div>
+      <strong><%= rating.user %></strong>
+      <br />
+      <p><%= rating.comment %></p>
+      <% if user_signed_in? && rating.user == current_user %>
+        <p><%= link_to 'Delete', rating_path(rating), method: :delete %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <% if user_signed_in? %>
+    <%= render 'ratings/form' %>
+  <% end %>
+</div>
+
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+
+<%= link_to 'New Rating', new_rating_path %>

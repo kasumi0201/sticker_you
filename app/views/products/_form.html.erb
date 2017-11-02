@@ -41,10 +41,20 @@
     <%= form.text_area :description, id: :product_description %>
   </div>
 
+  <!-- <div class="field">
+    <%#= form.label :image_data %>
+    <%#= form.text_area :image_data, id: :product_image_data %>
+  </div> -->
+
   <div class="field">
-    <%= form.label :image_data %>
-    <%= form.text_area :image_data, id: :product_image_data %>
-  </div>
+      <%= form.label :image %>
+      <%= form.hidden_field :image, value: @product.cached_image_data if defined?(@product.cached_image_data) %>
+      <%= form.file_field :image %>
+    </div>
+
+
+
+
 
   <div class="actions">
     <%= form.submit %>

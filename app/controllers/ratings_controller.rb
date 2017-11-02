@@ -28,12 +28,15 @@ class RatingsController < ApplicationController
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.any
+        # format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
         format.json { render :show, status: :created, location: @rating }
+        redirect_back(fallback_location: ratings_path)
       else
         format.html { render :new }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
       end
+
     end
   end
 

@@ -1,25 +1,30 @@
-<%= form_with(model: rating, local: true) do |form| %>
-  <% if rating.errors.any? %>
+<%= form_with(model: @rating, local: true) do |form| %>
+  <% if @rating.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
       <ul>
-      <% rating.errors.full_messages.each do |message| %>
+      <% @rating.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :rating_user_id %>
+  <!-- <div class="field">
+    <%#= form.label :user_id %>
+    <%#= form.text_field :user_id, id: :rating_user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :product_id %>
-    <%= form.text_field :product_id, id: :rating_product_id %>
-  </div>
+    <%#= form.label :product_id %>
+    <%#= form.text_field :product_id, id: :rating_product_id %>
+  </div> -->
+
+  <%= form.hidden_field :user_id %>
+<%= form.hidden_field :product_id %>
+
+
 
   <div class="field">
     <%= form.label :rating %>
