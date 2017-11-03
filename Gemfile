@@ -9,8 +9,8 @@ gem 'devise'
 gem 'shrine'
 gem 'hirb'   # モデルの出力結果を表形式で表示するGem
 gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
-
-
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record

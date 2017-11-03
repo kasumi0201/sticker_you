@@ -10,10 +10,7 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <body>
+    <%= render 'layouts/nav' %>
     <%= yield %>
-    <%= link_to 'Home', root_path %>
-    <%= link_to 'My page', profile_path(:id) %>
-
-
   </body>
 </html>
