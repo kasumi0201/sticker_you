@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
   include ImageUploader[:image]
   belongs_to :user, optional: true
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
 end

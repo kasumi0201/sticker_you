@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
-  
+
   def show
     @product = Product.includes(:user).find(params[:id])
     @ratings = @product.ratings.includes(:user).all
@@ -37,16 +37,16 @@ class ProductsController < ApplicationController
 end
 
   def edit
-      @photo = Photo.find(params[:id])
+      @product = Product.find(params[:id])
   end
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
 
   def update
-      @photo = Photo.find(params[:id])
-      if @photo.update_attributes(photo_params)
-        flash[:success] = 'Photo edited!'
-        redirect_to photos_path
+      @product = Product.find(params[:id])
+      if @product.update_attributes(product_params)
+        flash[:success] = 'Product edited!'
+        redirect_to products_path
       else
         render 'edit'
       end

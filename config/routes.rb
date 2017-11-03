@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   resources :profiles
 
   get 'home/index'
-
-   root 'home#index'
+  root 'home#index'
   devise_for :users
-  # , controllers: {
-  #      sessions: 'users/sessions'
-  #    }
- get 'users/sign_up'
+  get 'users/sign_up'
+  get "user/:id"    => redirect("/users/%{id}")
+  # get 'articles/:username/:id' to 'articles#show'
+  # get '/profiles/:id' to 'profiles#show'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
