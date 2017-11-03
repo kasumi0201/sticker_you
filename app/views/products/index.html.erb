@@ -19,15 +19,13 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
+        <td><img src="<%= product.image_url %>" height="100"></td>
         <td><%= product.user %></td>
         <td><%= product.title %></td>
         <td><%= product.kind %></td>
         <td><%= product.size %></td>
         <td><%= product.price %></td>
         <td><%= product.description %></td>
-        <!-- <td><%#= product.image_data %></td> -->
-
-        <td><img src="<%= product.image_url %>"></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
