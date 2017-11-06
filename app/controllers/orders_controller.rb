@@ -25,13 +25,10 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
     @product = Product.includes(:user).find_by(params[:id])
     # ログイン中のユーザーにプロジェクト情報を追加
     @order = @product.orders.new(order_params)
     @order.user_id = current_user.id
-
-
     # @order = Order.new(order_params)
 
     respond_to do |format|
