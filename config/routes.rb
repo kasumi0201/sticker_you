@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :ratings
   resources :products
   resources :profiles
+  resources :charges
 
   get 'home/index'
   root 'home#index'

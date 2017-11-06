@@ -35,13 +35,15 @@
   <td><img src= "<%= @product.image_url %>" height="100"></td>
 </p>
 
+<!-- orders_products -->
 
+<%= link_to 'Add to cart', new_order_path%>
 
 
 <div>
   <% @ratings.each do |rating| %>
     <div>
-      <strong><%= rating.user %></strong>
+      <strong><%= rating.user.email %></strong>
       <br />
       <p><%= rating.comment %></p>
       <% if user_signed_in? && rating.user == current_user %>

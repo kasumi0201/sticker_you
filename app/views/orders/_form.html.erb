@@ -14,8 +14,12 @@
   <div class="field">
     <%#= form.label :user_id %>
     <%#= form.text_field :user_id, id: :order_user_id %>
-    <%= current_user  %>
+    <%#= current_user  %>
   </div>
+  <%= form.hidden_field :user_id %>
+<%= form.hidden_field :product_id %>
+
+
 
   <div class="field">
     <%= form.label :shipping_postcode %>
@@ -30,6 +34,11 @@
   <div class="field">
     <%= form.label :phone %>
     <%= form.number_field :phone, id: :order_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stripe_confirmation_id %>
+    <%= form.text_field :stripe_confirmation_id, id: :order_stripe_confirmation_id %>
   </div>
 
   <div class="actions">

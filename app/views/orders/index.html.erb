@@ -15,18 +15,23 @@
 
   <tbody>
     <% @orders.each do |order| %>
+    <% if  current_user.id == order.user_id %>
       <tr>
         <td><%= order.user %></td>
         <td><%= order.shipping_postcode %></td>
         <td><%= order.shipping_address %></td>
         <td><%= order.phone %></td>
+        <td><%= order.stripe_confirmation_id %></td>
+
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
+
 
 <br>
 
