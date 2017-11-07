@@ -1,10 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Profiles</h1>
+<ul class="users">
 
+</ul>
 <table>
   <thead>
     <tr>
+      <% @users.each do |user| %>
+          <%= gravatar_for user %>
+      <% end %>
       <th>User</th>
       <th>First name</th>
       <th>Last name</th>
@@ -18,12 +23,15 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
+
         <td><%= profile.user %></td>
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
         <td><%= profile.postcode %></td>
         <td><%= profile.address %></td>
         <td><%= profile.bio %></td>
+
+
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
