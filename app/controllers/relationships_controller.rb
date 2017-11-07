@@ -23,19 +23,7 @@ class RelationshipsController < ApplicationController
 
   # POST /relationships
   # POST /relationships.json
-  def create
-    @relationship = Relationship.new(relationship_params)
 
-    respond_to do |format|
-      if @relationship.save
-        format.html { redirect_to @relationship, notice: 'Relationship was successfully created.' }
-        format.json { render :show, status: :created, location: @relationship }
-      else
-        format.html { render :new }
-        format.json { render json: @relationship.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # PATCH/PUT /relationships/1
   # PATCH/PUT /relationships/1.json
@@ -53,13 +41,23 @@ class RelationshipsController < ApplicationController
 
   # DELETE /relationships/1
   # DELETE /relationships/1.json
-  def destroy
-    @relationship.destroy
-    respond_to do |format|
-      format.html { redirect_to relationships_url, notice: 'Relationship was successfully destroyed.' }
-      format.json { head :no_content }
+  def create
+      @user = User.find(params[:followed_id])
+      current_user.follow(@user)
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.js
+      end
     end
-  end
+
+    def destroy
+      @user = Relationship.find(params[:id]).followed
+      current_user.unfollow(@user)
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.js
+      end
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.

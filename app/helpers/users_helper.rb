@@ -1,4 +1,3 @@
-
 module UsersHelper
 
   # 引数で与えられたユーザーのGravatar画像を返す
