@@ -17,18 +17,18 @@
 </thead> -->
 <!-- <tbody> -->
 <% @products.each do |product| %>
-<div class="card-deck">
-<div class="card" style="width: 20rem;">
+<!-- <div class="card-deck">
+<div class="card" style="width: 20rem;"> -->
 
 
-  <img class="card-img-top" src="<%= product.image_url %>" alt="Card image cap" width="300" height="200">
+  <img class="" src="<%= product.image_url %>" alt="Card image cap" width="300" height="200">
   <div class="card-body">
     <h4 class="card-title">Card title</h4>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
 
-</div>
-</div>
+<!-- </div>
+</div> -->
 <tr>
   <td><%= link_to 'Show', product %></td>
   <td><%= link_to 'Edit', edit_product_path(product) %></td>

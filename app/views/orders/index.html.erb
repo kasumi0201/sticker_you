@@ -5,19 +5,19 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
+      <th>User Id</th>
       <th>Shipping postcode</th>
       <th>Shipping address</th>
       <th>Phone</th>
+      <th>Stripe Confirmation Id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
-    <% if  current_user.id == order.user_id %>
+    <% @current_user_orders.each do |order| %>
       <tr>
-        <td><%= order.user %></td>
+        <td><%= order.user.id %></td>
         <td><%= order.shipping_postcode %></td>
         <td><%= order.shipping_address %></td>
         <td><%= order.phone %></td>
@@ -27,11 +27,10 @@
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-      <% end %>
     <% end %>
   </tbody>
 </table>
-
+<span>Total: $<%= @order_total %></span>
 <!-- ここに金額表示したい -->
 
 <br>

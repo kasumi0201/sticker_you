@@ -37,8 +37,11 @@
 
 <!-- orders_products -->
 
-<%= link_to 'Add to cart', new_order_path%>
-
+<% if current_user.order.present? %>
+  <%= link_to 'Create cart and add to cart', orders_path(order: {product_id: @product.id}), method: :post %>
+<% else %>
+  <%= link_to 'Add to existing cart', order_path(current_user.order.id, order: {product_id: @product.id}), method: :put %>
+<% end %>
 
 <div>
   <% @ratings.each do |rating| %>

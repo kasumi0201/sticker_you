@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @current_user_orders = Order.where(user_id: current_user.id)
+    @order_total = Order.total(@current_user_orders)
   end
 
   # GET /orders/1
@@ -25,10 +27,16 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @product = Product.includes(:user).find_by(params[:id])
+
+    puts "---- #{params.inspect}"
+    puts "---- #{params[:order]}"
+    # @product = Product.includes(:user).find_by(params[:id])
+    @product = Product.find(params[:order][:product_id])
+
     # ログイン中のユーザーにプロジェクト情報を追加
-    @order = @product.orders.new(order_params)
+    @order = @product.orders.new
     @order.user_id = current_user.id
+    @order.products << @product
     # @order = Order.new(order_params)
 
     respond_to do |format|
@@ -74,6 +82,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :shipping_postcode, :shipping_address, :phone, :stripe_confirmation_id)
+      params.require(:order).permit(:user_id, :shipping_postcode, :shipping_address, :phone, :stripe_confirmation_id, :product_id, :order)
     end
 end

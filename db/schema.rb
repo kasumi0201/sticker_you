@@ -23,19 +23,14 @@ ActiveRecord::Schema.define(version: 20171106031639) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "orders_products", id: false, force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "order_id", null: false
-    t.integer "quantity"
-  end
-
   create_table "product_orders", force: :cascade do |t|
-    t.integer "Product_id"
-    t.integer "Order_id"
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Order_id"], name: "index_product_orders_on_Order_id"
-    t.index ["Product_id"], name: "index_product_orders_on_Product_id"
+    t.index ["order_id"], name: "index_product_orders_on_order_id"
+    t.index ["product_id"], name: "index_product_orders_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -80,6 +75,9 @@ ActiveRecord::Schema.define(version: 20171106031639) do
     t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|
