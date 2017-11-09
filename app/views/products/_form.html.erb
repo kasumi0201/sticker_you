@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <!-- <div class="field">
-    <%#= form.label :user_id %>
-    <%#= form.text_field :user_id, id: :product_user_id %>
-  </div> -->
+<div class="container">
   <%= form.hidden_field :user_id %>
 
 
@@ -24,8 +21,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :kind %>
-    <%= form.text_field :kind, id: :product_kind %>
+    <%= form.label :type %>
+    <%= form.select :kind, [["wall sticker", "wall_sticker"], ["umbrella", "umbrella"], ["nail","nail"], ["laptop","laptop"], ["tattoo sticker","tattoo sticker"]], {prompt: "Select the type "} %>
   </div>
 
   <div class="field">
@@ -43,10 +40,6 @@
     <%= form.text_area :description, id: :product_description %>
   </div>
 
-  <!-- <div class="field">
-    <%#= form.label :image_data %>
-    <%#= form.text_area :image_data, id: :product_image_data %>
-  </div> -->
 
   <div class="field">
       <%= form.label :image %>
