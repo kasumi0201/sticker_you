@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
 <p>
   <strong>User:</strong>
-  <%= @product.user %>
+  <%= @product.user.id %>
 </p>
 
 <p>
@@ -42,17 +42,20 @@
 <% else %>
   <%= link_to 'Add to existing cart', order_path(current_user.order.id, order: {product_id: @product.id}), method: :put %>
 <% end %>
+<br /><br /><br />
 
-<div>
   <% @ratings.each do |rating| %>
-    <div>
       <strong><%= rating.user.email %></strong>
       <br />
+      <% rating.rating.to_i.times do %>
+      <span class = "star">★</span>
+        <% end %>
+
+
       <p><%= rating.comment %></p>
       <% if user_signed_in? && rating.user == current_user %>
         <p><%= link_to 'Delete', rating_path(rating), method: :delete %></p>
       <% end %>
-    </div>
   <% end %>
   <% if user_signed_in? %>
     <%= render 'ratings/form' %>
@@ -66,3 +69,5 @@
 
 
 <%= link_to 'New Rating', new_rating_path %>
+
+</div>

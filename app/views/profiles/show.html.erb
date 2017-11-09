@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
 
+</br>
 <%= gravatar_for @user %>
 
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
-
+</br></br>
 <p>
   <strong>First name:</strong>
   <%= @profile.first_name %>
@@ -34,3 +32,5 @@
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', root_path %>
+
+</div>

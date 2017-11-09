@@ -11,24 +11,14 @@
     </div>
   <% end %>
 
-  <!-- <div class="field">
-    <%#= form.label :user_id %>
-    <%#= form.text_field :user_id, id: :rating_user_id %>
-  </div>
-
-  <div class="field">
-    <%#= form.label :product_id %>
-    <%#= form.text_field :product_id, id: :rating_product_id %>
-  </div> -->
-
-  <%= form.hidden_field :user_id %>
+<%= form.hidden_field :user_id %>
 <%= form.hidden_field :product_id %>
 
 
-
+<!-- number_field -->
   <div class="field">
     <%= form.label :rating %>
-    <%= form.number_field :rating, id: :rating_rating %>
+    <%= form.select :rating,  [["★★★",3],["★★",2],["★",1]]%>
   </div>
 
   <div class="field">
