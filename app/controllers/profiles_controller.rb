@@ -11,8 +11,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-     @profile = Profile.includes(:user).find(current_user.id)
-     # @user = User.find_by(params[:id])
+     @profile = Profile.find(current_user.id)
      @user = User.find(current_user.id)
   end
 
@@ -44,7 +43,9 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    @profile = Profile.find(current_user.id)
     respond_to do |format|
+
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
